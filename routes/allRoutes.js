@@ -9,6 +9,7 @@ router.route('/').get((req, res) => {
 	res.send('hello world');
 });
 
+// GET /queue
 router.route('/queue').get(fetchQueue);
 
 export default router;
