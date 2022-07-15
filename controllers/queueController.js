@@ -1,14 +1,10 @@
-import fetch from 'node-fetch';
+import fetchQueue from '../helpers/fetchQueue.js';
 
-// function to fetch external queue time api
-const fetchQueue = async (req, res) => {
-	const apiResponse = await fetch(
-		'https://queue-times.com/parks/17/queue_times.json'
-	);
-	const apiResponseJson = await apiResponse.json();
+// for demo purposes
+const displayQueue = async (req, res) => {
+	const rides = await fetchQueue();
 
-	// store name, is_open, wait_time in db or array
-	res.send(apiResponseJson);
+	res.send(rides);
 };
 
-export default fetchQueue;
+export default displayQueue;

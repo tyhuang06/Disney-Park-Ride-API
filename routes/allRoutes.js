@@ -1,5 +1,5 @@
 import express from 'express';
-import fetchQueue from '../controllers/queueController.js';
+import displayQueue from '../controllers/queueController.js';
 
 // all routes for now
 // can break into separate routes later
@@ -10,6 +10,6 @@ router.route('/').get((req, res) => {
 });
 
 // GET /queue
-router.route('/queue').get(fetchQueue);
+router.route('/queue').get(displayQueue);
 
 export default router;
