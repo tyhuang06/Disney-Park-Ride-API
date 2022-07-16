@@ -12,7 +12,6 @@ const fetchCoordinates = async (ride) => {
 			'&apiKey=' +
 			process.env.GEOAPIFY_API_KEY
 	);
-
 	const apiResponseJson = await apiResponse.json();
 
 	// coordinates = [lng, lat]
@@ -33,4 +32,28 @@ const fetchCoordinates = async (ride) => {
 	return coordinates;
 };
 
-export default fetchCoordinates;
+// function to fetch walking time from starting point to destination
+// returns the walking time in minutes
+const fetchWalkingTime = async (start, dest) => {
+	const apiResponse = await fetch(
+		'https://api.geoapify.com/v1/routing?waypoints=' +
+			start.coordinates[1] +
+			',' +
+			start.coordinates[0] +
+			'|' +
+			dest.coordinates[1] +
+			',' +
+			dest.coordinates[0] +
+			'&mode=walk' +
+			'&apiKey=' +
+			process.env.GEOAPIFY_API_KEY
+	);
+	const apiResponseJson = await apiResponse.json();
+
+	// get walking time in minutes
+	const walkingTime = apiResponseJson.features[0].properties.time / 60;
+
+	return walkingTime;
+};
+
+export { fetchCoordinates, fetchWalkingTime };

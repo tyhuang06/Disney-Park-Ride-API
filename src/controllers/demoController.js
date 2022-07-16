@@ -1,5 +1,5 @@
 import fetchQueue from '../helpers/fetchQueue.js';
-import fetchCoordinates from '../helpers/fetchMap.js';
+import { fetchCoordinates, fetchWalkingTime } from '../helpers/fetchMap.js';
 
 // for demo purposes
 const displayRides = async (req, res) => {
@@ -15,7 +15,19 @@ const displayRides = async (req, res) => {
 		}))
 	);
 
-	res.send(ridesWithCo);
+	// get walking time from starting point to all destinations
+	// demo starting point: first ride
+	const start = ridesWithCo[0];
+
+	// walking time = starting point to each ride
+	const ridesWithWalkingTime = await Promise.all(
+		ridesWithCo.map(async (ride) => ({
+			...ride,
+			walkingTime: await fetchWalkingTime(start, ride),
+		}))
+	);
+
+	res.send(ridesWithWalkingTime);
 };
 
 export default displayRides;
