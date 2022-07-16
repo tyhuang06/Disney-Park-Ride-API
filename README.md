@@ -6,6 +6,10 @@
 ## API Docs
 
 - `GET /`: temporary hello world
-- `GET /demo`: (Jamie working on it) this route is just for demo purpose. 
+- `GET /demo`: This route is just for demo purpose. Currently the demo shows distance from "Guardians of the Galaxy – Mission: Breakout!" to all rides.
 
-    1. fetch queue works as a helper function we can call when we want to get the current wait time, it will return an array of ride objects. The array shown on this demo route is the array the helper function will return.
+    Shows how to use the functions below:
+
+    1. `fetchQueue()`: fetch external queue api, returns an array of ride objects with queue time.
+    2. `fetchCoordinates(ride)`: fetch geocoding api, takes in an ride object and returns the coordinates.
+    3. `fetchWalkingTime(start, dest)`: fetch routing api, takes in two rides start and destination. Returns the walking time from start to dest in minutes.
