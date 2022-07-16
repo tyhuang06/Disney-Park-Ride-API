@@ -1,5 +1,5 @@
 import express from 'express';
-import displayQueue from '../controllers/queueController.js';
+import displayRides from '../controllers/demoController.js';
 
 // all routes for now
 // can break into separate routes later
@@ -9,7 +9,7 @@ router.route('/').get((req, res) => {
 	res.send('hello world');
 });
 
-// GET /queue
-router.route('/queue').get(displayQueue);
+// GET /demo
+router.route('/demo').get(displayRides);
 
 export default router;

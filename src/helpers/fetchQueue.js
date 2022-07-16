@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 // function to fetch external queue time api
 // returns an array of ride objects
-const fetchQueue = async (req, res) => {
+const fetchQueue = async () => {
 	// park 17 : Disney California Adventure
 	const apiResponse = await fetch(
 		'https://queue-times.com/parks/17/queue_times.json'
