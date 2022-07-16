@@ -1,6 +1,7 @@
 {
-	"name": "disney_park_ride",
+	"name": "disney_park_ride_api",
 	"version": "1.0.0",
+	"author": "Jamie Huang, ",
 	"main": "server.js",
 	"license": "MIT",
 	"type": "module",
