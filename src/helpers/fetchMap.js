@@ -20,14 +20,14 @@ const fetchCoordinates = async (ride) => {
 	if (apiResponseJson.features.length > 0) {
 		coordinates = apiResponseJson.features[0].geometry.coordinates;
 	} else {
+		coordinates = [0, 0];
+		console.log(ride.name + ' not found');
+
 		// cannot find "Games of Pixar Pier" with API
 		// hard code coordinates
 		if (ride.name === 'Games of Pixar Pier') {
 			coordinates = [-117.92254744047085, 33.8048946];
 		}
-
-		coordinates = [0, 0];
-		console.log(ride.name + ' not found');
 	}
 
 	return coordinates;
@@ -52,6 +52,7 @@ const fetchWalkingTime = async (start, dest) => {
 	const apiResponseJson = await apiResponse.json();
 
 	// get walking time in minutes
+	console.log(apiResponseJson);
 	const walkingTime = apiResponseJson.features[0].properties.time / 60;
 
 	return walkingTime;
