@@ -85,4 +85,4 @@ const getDistanceToAll = async (start, rides) => {
 	return ridesWithWalkingTime;
 };
 
-export { getAllRides, getDistanceToAll };
+export { getAllRides, getDistanceToAll, fetchWalkingTime };
