@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import fetchQueue from '../helpers/fetchQueue.js';
 
 // function to fetch coordinates by name
 // only search within Disney California Adventure to increase performance
@@ -56,4 +57,32 @@ const fetchWalkingTime = async (start, dest) => {
 	return walkingTime;
 };
 
-export { fetchCoordinates, fetchWalkingTime };
+const getAllRides = async () => {
+	// get all rides from external api
+	const rides = await fetchQueue();
+
+	// loop through rides and get coordinates
+	// add coordinates property to rides
+	const ridesWithCo = await Promise.all(
+		rides.map(async (ride) => ({
+			...ride,
+			coordinates: await fetchCoordinates(ride),
+		}))
+	);
+
+	return ridesWithCo;
+};
+
+const getDistanceToAll = async (start, rides) => {
+	// walking time = starting point to each ride
+	const ridesWithWalkingTime = await Promise.all(
+		rides.map(async (ride) => ({
+			...ride,
+			walkingTime: await fetchWalkingTime(start, ride),
+		}))
+	);
+
+	return ridesWithWalkingTime;
+};
+
+export { getAllRides, getDistanceToAll, fetchWalkingTime };
