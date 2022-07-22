@@ -52,7 +52,6 @@ const fetchWalkingTime = async (start, dest) => {
 	const apiResponseJson = await apiResponse.json();
 
 	// get walking time in minutes
-	console.log(apiResponseJson);
 	const walkingTime = apiResponseJson.features[0].properties.time / 60;
 
 	return walkingTime;
