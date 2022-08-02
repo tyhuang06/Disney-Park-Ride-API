@@ -32,13 +32,23 @@ const getShortestPath = async (sourceId, algo) => {
 	let shortestWeight = [];
 
 	if (algo === 'bellman-ford') {
+		console.log("Bellman-Ford's algorithm");
+		console.log(new Date().getMilliseconds());
+
 		// find shortest path using Bellman-Ford
 		const bf = new BellmanFord(sourceIdx, rides, edges);
+
 		shortestWeight = bf.run();
+		console.log(new Date().getMilliseconds());
 	} else if (algo == 'dijkstra') {
+		console.log("Dijkstra's algorithm");
+		console.log(new Date().getMilliseconds());
+
 		// find shortest path using Dijkstra
 		const dijkstra = new Dijkstra(sourceIdx, rides, edges);
 		shortestWeight = dijkstra.run();
+
+		console.log(new Date().getMilliseconds());
 	}
 
 	// add first ride's wait time
