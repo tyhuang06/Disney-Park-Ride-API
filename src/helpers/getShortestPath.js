@@ -1,5 +1,6 @@
 import { getAllRides, getDistanceToAll } from './fetchMap.js';
 import { BellmanFord } from './bellmanFord.js';
+import { Dijkstra } from './dijkstra.js';
 
 const getShortestPath = async (sourceId, algo) => {
 	// get all rides and exclude not opened ones
@@ -34,6 +35,10 @@ const getShortestPath = async (sourceId, algo) => {
 		// find shortest path using Bellman-Ford
 		const bf = new BellmanFord(sourceIdx, rides, edges);
 		shortestWeight = bf.run();
+	} else if (algo == 'dijkstra') {
+		// find shortest path using Dijkstra
+		const dijkstra = new Dijkstra(sourceIdx, rides, edges);
+		shortestWeight = dijkstra.run();
 	}
 
 	// add first ride's wait time
