@@ -62,6 +62,14 @@ const getShortestPath = async (sourceId, algo) => {
 	// sort rides by shortest weight
 	rides.sort((a, b) => a.shortestWeight - b.shortestWeight);
 
+	// clean up data
+	rides.forEach((ride) => {
+		delete ride.coordinates;
+		delete ride.walkingTime;
+		delete ride.wait_time;
+		delete ride.shortestWeight;
+	});
+
 	return rides;
 };
 
